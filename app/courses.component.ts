@@ -1,4 +1,5 @@
-import {Component} from 'angular2/core'
+import {Component} from 'angular2/core';
+import {CourseService} from './course.service';
 
 @Component({
 	selector:'courses',
@@ -9,10 +10,14 @@ import {Component} from 'angular2/core'
 					{{course}}
 					</li>
 				</ul>
-				`
+				`,
+	providers: [CourseService]
 })
 
 export class CoursesComponent{
 	title =  "Working AngularJS 2";
-	courses = ["Math","English","Computer Programming"];
+	courses;
+	constructor(courseService: CourseService){
+		this.courses=courseService.getCourses();
+	}
 }
